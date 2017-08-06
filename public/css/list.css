@@ -1,0 +1,10 @@
+.list-group-collapse li > ul li:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.list-group-collapse li > ul {
+    margin-left: -16px;
+    margin-right: -16px;
+    margin-bottom: -11px;
+}

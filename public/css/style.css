@@ -1,0 +1,67 @@
+/* navbar */
+.navbar-default {
+    background-color: #EBFFE0;
+    border-color: #EBFFE0;
+}
+/* Link */
+.navbar-default .navbar-nav > li > a {
+	color: #3eed0e;
+    font-weight: bold;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #449D44;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #3eed0e;
+    background-color: #449D44;
+}
+body{
+	background: #d7ffbf;
+}
+input, select{
+	font-weight: bold;
+}
+div.alert.alert-danger, div.alert alert-success{
+	margin-top: 2em;
+	border: 0.3em solid;
+}
+
+.btn.btn-default, .form-control{
+	background: #ebffe0;
+}
+.btn{
+	font-weight: bold;
+}
+
+#imagepreview{
+	margin: auto;
+	display: block;
+}
+.smallimage{
+	max-width: 100px;
+	max-height: 100px;
+	width: 100px;
+	height: 100px;
+	border-radius: 3em;
+}
+div.list-group-item-text.row{
+	margin-bottom: 0.4em;
+}
+li{
+	list-style-type: none;
+}
+ul{
+	margin-left: -2em;
+}
+.ul-person{
+	margin-left: 2em;
+}
+.btn-person{
+	margin-bottom: 2em;
+}
+.modal-content{
+	background: #d7ffbf;
+}

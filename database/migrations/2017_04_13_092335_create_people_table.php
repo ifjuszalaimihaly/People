@@ -20,9 +20,7 @@ class CreatePeopleTable extends Migration
             $table->string('email',50)->unique();
             $table->string('website',50)->unique()->nullable();
             $table->string('phone',12)->unique();
-            /*$table->string('photo_small');
-            $table->string('phote_big');*/
-            $table->string('boss_id')->references('id')->on('people');
+            $table->integer('boss_id');
             $table->timestamps();
         });
     }

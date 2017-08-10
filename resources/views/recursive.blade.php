@@ -1,7 +1,7 @@
 <li id="li-{{ $person->id }}">
 <div class="row row-person">
-@if($person->smallimage != null)
-			<img role="button" data-toggle="modal" data-target="#showBigImage" data-pesron_big_image="{{ $person->bigimage }}" id="image-{{ $person->id }}" src="{{ URL::to('/') }}/{{$person->smallimage }}" class=" smallimage col-sm-2">
+@if($person->small_image != null)
+			<img role="button" data-toggle="modal" data-target="#showBigImage" data-pesron_big_image="{{ $person->big_image }}" id="image-{{ $person->id }}" src="{{ URL::to('/') }}/{{$person->small_image }}" class=" smallimage col-sm-2">
 		
 
 @endif

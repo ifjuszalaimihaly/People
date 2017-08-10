@@ -85,18 +85,18 @@ class PersonController extends Controller
                     });
                 }
                 if($width<=800 && $height>600){
-                    $image_big->resize(800, null, function ($constraint) {
+                    $image_big->resize(null, 800, function ($constraint) {
                         $constraint->aspectRatio();
                     });
                 }
 
             }
             $image_big->save("uploads/big-".time().$image_name);
-            $person->bigimage = "uploads/big-".time().$image_name;
+            $person->big_image = "uploads/big-".time().$image_name;
             $image_small = Image::make($image);              
             $image_small->resize(100, 100);
             $image_small->save("uploads/small-".time().$image_name);
-            $person->smallimage = "uploads/small-".time().$image_name;
+            $person->small_image = "uploads/small-".time().$image_name;
         }
         $person->save();
         return redirect()->back()->with('message', 'Sikeres feltöltés');
@@ -180,11 +180,11 @@ class PersonController extends Controller
 
             }
             $image_big->save("uploads/big-".time().$image_name);
-            $person->bigimage = "uploads/big-".time().$image_name;
+            $person->big_image = "uploads/big-".time().$image_name;
             $image_small = Image::make($image);              
             $image_small->resize(100, 100);
             $image_small->save("uploads/small-".time().$image_name);
-            $person->smallimage = "uploads/small-".time().$image_name;
+            $person->small_image = "uploads/small-".time().$image_name;
         }
         $person->save();
         return redirect()->back()->with('message', 'Sikeres módosítás');
@@ -202,7 +202,7 @@ class PersonController extends Controller
     {
         //dd($request->id." ".$id);
         $person = Person::find($request->id);
-        File::delete($person->bigimage, $person->smallimage);
+        File::delete($person->big_image, $person->small_image);
         $person->delete();
     }
 

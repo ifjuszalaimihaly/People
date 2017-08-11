@@ -47,70 +47,7 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|unique:people|email',
-            'phone' => 'required|unique:people|max:12',
-            'website' => 'nullable|unique:people'
-        ]);
-
-        $person = new Person;
-        $person->boss_id = $request->boss_id;
-        $person->last_name = $request->last_name;
-        $person->first_name = $request->first_name;
-        $person->email = $request->email;
-        $person->website = $request->website;
-        $person->phone = $request->phone;
-        if($request->hasFile('image')){
-            $image = $request->file('image')->getRealPath();
-            $image_name = $request->file('image')->getClientOriginalName();
-            list($width, $height) = getimagesize($image);
-            $image_big = Image::make($image); 
-            if($width > 800 || $height>600){
-                if($width>800 && $height>600){
-                    if($height>$width){
-                        $image_big->resize(null, 800, function ($constraint) {
-                            $constraint->aspectRatio();
-                        });
-                    } else {
-                        $image_big->resize(600, null, function ($constraint) {
-                            $constraint->aspectRatio();
-                        });
-                    }
-                }
-                if($width>800 && $height<=600){
-                    $image_big->resize(800, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                }
-                if($width<=800 && $height>600){
-                    $image_big->resize(null, 800, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                }
-
-            }
-            $image_big->save("uploads/big-".time().$image_name);
-            $person->big_image = "uploads/big-".time().$image_name;
-            $image_small = Image::make($image);              
-            $image_small->resize(100, 100);
-            $image_small->save("uploads/small-".time().$image_name);
-            $person->small_image = "uploads/small-".time().$image_name;
-        }
-        $person->save();
-        return redirect()->back()->with('message', 'Sikeres feltöltés');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return $this->storePerson($request,null); 
     }
 
     /**
@@ -135,20 +72,45 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $this->validate($request, [
+        return $this->storePerson($request,$id);        
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, $id)
+    {
+        //dd($request->id." ".$id);
+        $person = Person::find($request->id);
+        File::delete($person->big_image, $person->small_image);
+        $person->delete();
+    }
+
+    private function storePerson(Request $request, $id){
+        $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
             'phone' => 'required|max:12'
         ]);
-        $person = Person::find($id);
+        if($id == null){
+            $person = new Person;
+            $person->boss_id = $request->boss_id;
+        } else {
+            $person = Person::find($id);
+        }
         $person->last_name = $request->last_name;
         $person->first_name = $request->first_name;
         $person->email = $request->email;
         $person->website = $request->website;
         $person->phone = $request->phone;
         if($request->hasFile('image')){
-            File::delete($person->bigimage, $person->smallimage);
+            if($person->big_image != null && $person->small_image !=null){
+                File::delete($person->big_image, $person->small_image);
+            }
             $image = $request->file('image')->getRealPath();
             $image_name = $request->file('image')->getClientOriginalName();
             list($width, $height) = getimagesize($image);
@@ -179,32 +141,17 @@ class PersonController extends Controller
                 }
 
             }
-            $image_big->save("uploads/big-".time().$image_name);
-            $person->big_image = "uploads/big-".time().$image_name;
+            $rand = rand(1000,9999).time(); //more collision safety;
+            $image_big->save("uploads/big-".$rand.$image_name);
+            $person->big_image = "uploads/big-".$rand.$image_name;
             $image_small = Image::make($image);              
             $image_small->resize(100, 100);
-            $image_small->save("uploads/small-".time().$image_name);
-            $person->small_image = "uploads/small-".time().$image_name;
+            $image_small->save("uploads/small-".$rand.$image_name);
+            $person->small_image = "uploads/small-".$rand.$image_name;
         }
         $person->save();
         return redirect()->back()->with('message', 'Sikeres módosítás');
-
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $id)
-    {
-        //dd($request->id." ".$id);
-        $person = Person::find($request->id);
-        File::delete($person->big_image, $person->small_image);
-        $person->delete();
-    }
+    }    
 
 
 

@@ -39,7 +39,6 @@ div.alert.alert-danger, div.alert alert-success{
 <<<<<<< HEAD
 .row-person{
 	margin-right: 1em;
-	margin-bottom: 2em;
 }
 =======
 
@@ -67,9 +66,11 @@ li{
 ul{
 	margin-left: -2em;
 }
-
 .ul-person{
 	margin-left: 2em;
+}
+.btn-person{
+	margin-bottom: 2em;
 }
 .modal-content{
 	background: #d7ffbf;

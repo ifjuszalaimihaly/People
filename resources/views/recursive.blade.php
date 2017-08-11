@@ -27,15 +27,16 @@
 
 	
 	<div class="row">
-  <div class="col-md-4 col-xs-12">
+  <div class="col-md-4 col-sm-6 col-xs-12">
     <a class="btn btn-success btn-person btn-block" href="{{ route('person.edit', $person->id) }}">Módosít</a>
-    @if(!$person->subalterns->count())
-      <button class="btn btn-danger btn-person btn-block" role="button" data-toggle="modal" data-target="#confirmDelete"
-        data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}"  
-      >Töröl</button>
-    @endif
   </div>
-	
+	@if(!$person->subalterns->count())
+    <div class="col-md-4 col-sm-6 col-xs-12">
+		<button class="btn btn-danger btn-person btn-block" role="button" data-toggle="modal" data-target="#confirmDelete"
+			data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}"	
+		>Töröl</button>
+		</div>
+	@endif
   </div>
 </div>
 </div>

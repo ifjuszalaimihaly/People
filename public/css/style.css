@@ -33,7 +33,7 @@ body{
 input, select{
 	font-weight: bold;
 }
-div.alert.alert-danger, div.alert alert-success{
+div.alert.alert-danger, div.alert.alert-success{
 	margin-top: 2em;
 	border: 0.3em solid;
 }
@@ -51,7 +51,7 @@ div.alert.alert-danger, div.alert alert-success{
 	font-weight: bold;
 }
 .row-person{
-	margin-right: 1em;
+	margin-bottom: 1em;
 }
 #imagepreview{
 	margin: auto;
@@ -63,7 +63,6 @@ div.alert.alert-danger, div.alert alert-success{
 	width: 100px;
 	height: 100px;
 	border-radius: 3em;
-	margin-bottom: 0.4em
 }
 div.list-group-item-text.row{
 	margin-bottom: 0.4em;
@@ -71,14 +70,8 @@ div.list-group-item-text.row{
 li{
 	list-style-type: none;
 }
-ul{
-	margin-left: -2em;
-}
 .ul-person{
-	margin-left: 2em;
-}
-.btn-person{
-	margin-bottom: 2em;
+	margin-left: 3em;
 }
 .modal-content{
 	background: #d7ffbf;
@@ -93,4 +86,7 @@ ul{
 }
 #showBigImage{
 	text-align: center;
+}
+p{
+	margin-bottom: 0.15em;
 }

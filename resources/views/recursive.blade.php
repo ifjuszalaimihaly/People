@@ -6,38 +6,33 @@
 
 @endif
 
-<div class="col-sm-8"> 
+<div class="col-sm-10 col-xs-12"> 
 <h4 class="list-group-item-heading">{{ $person->first_name }} {{ $person->last_name }}</h4>
-  <div class="list-group-item-text row">
-    <div class="col-md-4"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span> 
+  <div class="list-group-item-text"> 
+    
+    <p><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span> 
     <a href="mailto:{{ $person->email }}">{{ $person->email }}</a>
-    </div>
-    @if($person->website!=null)
-    <div class="col-md-4">
-      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-      <a href="http://{{$person->website}}">{{ $person->website }}</a> 
-    </div>
-    @endif
-    <div class="col-md-4">
+    </p>
+    <p>
     <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
     {{ $person->phone }}
-    </div>
-    
-  </div>
-
+    </p>
+    @if($person->website!=null)
+    <p>
+      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+      <a href="http://{{$person->website}}">{{ $person->website }}</a> 
+    </p>
+    @endif
+  </div>  
+     
+      <a class="btn btn-success btn-person" href="{{ route('person.edit', $person->id) }}">  Módosít</a>
+     
+      @if(!$person->subalterns->count())      
+        <button class="btn btn-danger btn-person" role="button" data-toggle="modal" data-target="#confirmDelete"
+      data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}" 
+        >Töröl</button>    
+    @endif
   
-  <div class="row">
-  <div class="col-md-4 col-sm-6 col-xs-12">
-    <a class="btn btn-success btn-person btn-block" href="{{ route('person.edit', $person->id) }}">Módosít</a>
-  </div>
-  @if(!$person->subalterns->count())
-    <div class="col-md-4 col-sm-6 col-xs-12">
-    <button class="btn btn-danger btn-person btn-block" role="button" data-toggle="modal" data-target="#confirmDelete"
-      data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}"  
-    >Töröl</button>
-    </div>
-  @endif
-  </div>
 </div>
 </div>
 @if($person->subalterns->count())
@@ -45,7 +40,7 @@
     @foreach($person->subalterns as $person)
         @include('recursive', $person)
     @endforeach
-  </ul>    
+  </ul>
 @endif
 </li>
 {{csrf_field()}}

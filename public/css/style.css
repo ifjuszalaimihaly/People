@@ -24,7 +24,7 @@ body{
 input, select{
 	font-weight: bold;
 }
-div.alert.alert-danger, div.alert alert-success{
+div.alert.alert-danger, div.alert.alert-success{
 	margin-top: 2em;
 	border: 0.3em solid;
 }
@@ -38,8 +38,12 @@ div.alert.alert-danger, div.alert alert-success{
 <<<<<<< HEAD
 <<<<<<< HEAD
 .row-person{
+<<<<<<< HEAD
 	margin-right: 1em;
 	margin-bottom: 2em;
+=======
+	margin-bottom: 1em;
+>>>>>>> 02a971a942a22eaf4195385a2041e17856a37941
 }
 =======
 
@@ -64,6 +68,7 @@ div.list-group-item-text.row{
 li{
 	list-style-type: none;
 }
+<<<<<<< HEAD
 ul{
 	margin-left: -2em;
 }
@@ -73,4 +78,25 @@ ul{
 }
 .modal-content{
 	background: #d7ffbf;
+=======
+.ul-person{
+	margin-left: 3em;
+}
+.modal-content{
+	background: #d7ffbf;
+}
+.modal-image { /* Width */
+    max-width: 100%;
+    width: auto !important;
+    display: inline-block;
+}
+.modal-body{
+	text-align: center;
+}
+#showBigImage{
+	text-align: center;
+}
+p{
+	margin-bottom: 0.15em;
+>>>>>>> 02a971a942a22eaf4195385a2041e17856a37941
 }

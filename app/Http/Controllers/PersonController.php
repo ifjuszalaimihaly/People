@@ -94,7 +94,8 @@ class PersonController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|max:12'
+            'phone' => 'required|max:12',
+            'image' => 'image'
         ]);
         if($id == null){
             $person = new Person;

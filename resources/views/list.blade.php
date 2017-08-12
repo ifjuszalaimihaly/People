@@ -3,7 +3,7 @@
 Személyek listázása
 @endsection
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 5em;">
 	<div class="row">
 		<div class="col-xs-12">        
             <ul>

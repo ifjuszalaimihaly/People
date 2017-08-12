@@ -47,7 +47,8 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->storePerson($request,null); 
+        $this->storePerson($request,null);
+        return redirect()->back()->with('message', 'Sikeres felvétel');
     }
 
     /**
@@ -72,7 +73,8 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->storePerson($request,$id);        
+        $this->storePerson($request,$id);
+        return redirect()->back()->with('message', 'Sikeres módosítás');      
     }
 
     /**
@@ -130,7 +132,6 @@ class PersonController extends Controller
             $person->small_image = "uploads/small-".$rand.$image_name;
         }
         $person->save();
-        return redirect()->back()->with('message', 'Sikeres módosítás');
     }    
 
 

@@ -94,7 +94,8 @@ class PersonController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|max:12'
+            'phone' => 'required|max:12',
+            'image' => 'image'
         ]);
         if($id == null){
             $person = new Person;
@@ -116,30 +117,9 @@ class PersonController extends Controller
             list($width, $height) = getimagesize($image);
             $image_big = Image::make($image); 
             if($width > 800 || $height>600){
-                if($width>800 && $height>600){
-                    if($height>$width){
-                        $image_big->resize(null, 800, function ($constraint) {
-                            $constraint->aspectRatio();
-                        });
-                    } else {
-                        $image_big->resize(600, null, function ($constraint) {
-                            $constraint->aspectRatio();
-                        });
-                    }
-                }
-                if($width>800 && $height<=600){
-                    //dd("width>800 && height<=600");
-                    $image_big->resize(800, null, function ($constraint) {
-                        $constraint->aspectRatio(); //there are not downsize method
-                    });
-                }
-                if($width<=800 && $height>600){
-                    //dd("width<=800 && height>600");
-                    $image_big->resize(null, 600, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                }
-
+                $image_big->resize(800, 600, function ($constraint) {
+                    $constraint->aspectRatio();
+                });        
             }
             $rand = rand(1000,9999).time(); //more collision safety;
             $image_big->save("uploads/big-".$rand.$image_name);

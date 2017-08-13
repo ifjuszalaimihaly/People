@@ -3,7 +3,7 @@
 Személy felvétele módosítása
 @endsection
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 5em;">
 	<div class="row">
 		<div class="col-md-6 col-sm-8 col-xs-12">
 			<form 

@@ -47,8 +47,12 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
+        return $this->storePerson($request,null); 
+=======
         $this->storePerson($request,null);
         return redirect()->back()->with('message', 'Sikeres felvétel');
+>>>>>>> 02a971a942a22eaf4195385a2041e17856a37941
     }
 
     /**
@@ -73,8 +77,12 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
+<<<<<<< HEAD
+        return $this->storePerson($request,$id);        
+=======
         $this->storePerson($request,$id);
         return redirect()->back()->with('message', 'Sikeres módosítás');      
+>>>>>>> 02a971a942a22eaf4195385a2041e17856a37941
     }
 
     /**
@@ -136,6 +144,10 @@ class PersonController extends Controller
             $person->small_image = "uploads/small-".$rand.$image_name;
         }
         $person->save();
+<<<<<<< HEAD
+        return redirect()->back()->with('message', 'Sikeres módosítás');
+=======
+>>>>>>> 02a971a942a22eaf4195385a2041e17856a37941
     }    
 
 

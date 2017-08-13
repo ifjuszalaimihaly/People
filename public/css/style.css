@@ -1,10 +1,7 @@
-*{
-	border-color: #EBFFE0 !important;	
-}
 /* navbar */
 .navbar-default {
     background-color: #EBFFE0;
-
+    border-color: #EBFFE0;
 }
 /* Link */
 .navbar-default .navbar-nav > li > a {
@@ -20,12 +17,6 @@
 .navbar-default .navbar-nav > .active > a:focus {
     color: #3eed0e;
     background-color: #449D44;
-}
-.navbar-toggle{
-	background-color: #449D44 !important;
-}
-.icon-bar{
-	background-color: #3eed0e !important;
 }
 body{
 	background: #d7ffbf;
@@ -48,6 +39,9 @@ div.alert.alert-danger, div.alert.alert-success{
 }
 .btn{
 	font-weight: bold;
+}
+.row-person{
+	margin-bottom: 1em;
 }
 #imagepreview{
 	margin: auto;
@@ -93,6 +87,7 @@ li{
 }
 p{
 	margin-bottom: 0.15em;
+
 }
 .form-delete{
 	display: inline !important;

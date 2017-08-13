@@ -21,7 +21,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $person = Person::where('id',1)->first();
+        $person = Person::where('boss_id',0)->first();
         return view('list')->withPerson($person);
         
     }
@@ -83,7 +83,7 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
         //dd($request->id." ".$id);
         $person = Person::find($request->id);
@@ -101,7 +101,11 @@ class PersonController extends Controller
         ]);
         if($id == null){
             $person = new Person;
-            $person->boss_id = $request->boss_id;
+            if($request->boss_id != null){
+                $person->boss_id = $request->boss_id; 
+            } else{
+                $person->boss_id = 0;
+            }            
         } else {
             $person = Person::find($id);
         }

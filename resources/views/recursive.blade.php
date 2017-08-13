@@ -1,11 +1,11 @@
+
 <li id="li-{{ $person->id }}">
 <div class="row row-person">
 @if($person->small_image != null)
-      <img role="button" data-toggle="modal" data-target="#showBigImage" data-pesron_big_image="{{ $person->big_image }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}" id="image-{{ $person->id }}" src="{{ URL::to('/') }}/{{$person->small_image }}" class="smallimage col-sm-2 img-responsive">
+      <img id="img-{{ $person->id }}" role="button" data-toggle="modal" data-target="#showBigImage" data-pesron_big_image="{{ $person->big_image }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}" id="image-{{ $person->id }}" src="{{ URL::to('/') }}/{{$person->small_image }}" class="smallimage col-sm-2 img-responsive">
     
 
 @endif
-
 <div class="col-sm-10 col-xs-12"> 
 <h4 class="list-group-item-heading">{{ $person->first_name }} {{ $person->last_name }}</h4>
   <div class="list-group-item-text"> 
@@ -20,23 +20,35 @@
     @if($person->website!=null)
     <p>
       <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-      <a href="http://{{$person->website}}">{{ $person->website }}</a> 
+      <a href="{{$person->website}}">{{ $person->website }}</a> 
     </p>
     @endif
-  </div>  
+    
+    
+    <a class="btn btn-success btn-person" href="{{ route('person.edit', $person->id) }}">Módosít</a>
+            @if(!$person->subalterns->count())   
      
-      <a class="btn btn-success btn-person" href="{{ route('person.edit', $person->id) }}">  Módosít</a>
-     
-      @if(!$person->subalterns->count())      
-        <button class="btn btn-danger btn-person" role="button" data-toggle="modal" data-target="#confirmDelete"
-      data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}" 
-        >Töröl</button>    
-    @endif
-  
+            <button class="btn btn-danger btn-person" role="button" data-toggle="modal" data-target="#confirmDelete"
+            data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}" 
+            data-pesron_boss_id="{{ $person->boss_id }}"
+            >Töröl</button>
+           
+
+            @else
+                <button class="btn btn-danger btn-person" id="del-{{ $person->id }}" role="button" data-toggle="modal" data-target="#confirmDelete"
+            data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}"
+            data-pesron_boss_id="{{ $person->boss_id }}" style="display: none;" 
+            >Töröl</button>
+            @endif
+            @if($person->big_image != null && $person->small_image != null)
+            <button class="btn btn-primary btn-photo btn-person" id="btn-{{ $person->id }}">Kép törlése</button>              
+            @endif
+
+</div>  
 </div>
 </div>
 @if($person->subalterns->count())
-  <ul class="list-group ul-person">               
+  <ul class="ul-person">               
     @foreach($person->subalterns as $person)
         @include('recursive', $person)
     @endforeach

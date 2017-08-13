@@ -51,7 +51,7 @@ class PersonController extends Controller
     public function store(Request $request)
     {
         $this->storePerson($request,null);
-        return redirect()->back()->with('message', 'Sikeres felvétel');
+        return redirect()->back()->with('message', 'Sikeres felvétel')->withInput($request->input());
     }
 
     /**

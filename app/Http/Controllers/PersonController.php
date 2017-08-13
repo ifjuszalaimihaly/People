@@ -138,7 +138,9 @@ class PersonController extends Controller
         $person->save();
     }    
 
-
+    public function countsublatern(Request $request){
+        return Person::find($request->id)->subalterns()->count();
+    }
 
 
 }

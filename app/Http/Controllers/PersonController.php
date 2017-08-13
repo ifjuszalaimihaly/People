@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\File;
 
 use Intervention\Image\ImageManagerStatic as Image;
 
+use Illuminate\Support\Facades\Log;
+
 use App\Person;
 
 
@@ -19,6 +21,7 @@ class PersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $person = Person::where('boss_id',0)->first();
@@ -92,6 +95,7 @@ class PersonController extends Controller
     }
 
     private function storePerson(Request $request, $id){
+        Log::error("---------------------------");
         $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',
@@ -121,22 +125,27 @@ class PersonController extends Controller
             $image = $request->file('image')->getRealPath();
             $image_name = $request->file('image')->getClientOriginalName();
             list($width, $height) = getimagesize($image);
-            $image_big = Image::make($image); 
+            $image_big = Image::make($image);
+            $number = $image_big->exif('Orientation');
+            $image_big->orientate();
             if($width > 800 || $height>600){
                 $image_big->resize(800, 600, function ($constraint) {
                     $constraint->aspectRatio();
-                });        
+                }); 
             }
+            $image_small = Image::make($image);  
+            $image_small->orientate();
+            $image_small->resize(100, 100);
+            
             $rand = rand(1000,9999).time(); //more collision safety;
             $image_big->save("uploads/big-".$rand.$image_name);
             $person->big_image = "uploads/big-".$rand.$image_name;
-            $image_small = Image::make($image);              
-            $image_small->resize(100, 100);
             $image_small->save("uploads/small-".$rand.$image_name);
             $person->small_image = "uploads/small-".$rand.$image_name;
         }
         $person->save();
     }    
+
 
     public function countsublatern(Request $request){
         return Person::find($request->id)->subalterns()->count();

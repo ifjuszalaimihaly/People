@@ -28,32 +28,35 @@ div.alert.alert-danger, div.alert.alert-success{
 	margin-top: 2em;
 	border: 0.3em solid;
 }
-
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(68, 157, 68, .6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(68, 157, 68, .6);
+}
 .btn.btn-default, .form-control{
 	background: #ebffe0;
 }
 .btn{
 	font-weight: bold;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
 .row-person{
-<<<<<<< HEAD
-	margin-right: 1em;
-	margin-bottom: 2em;
-=======
 	margin-bottom: 1em;
->>>>>>> 02a971a942a22eaf4195385a2041e17856a37941
 }
-=======
-
->>>>>>> parent of dfd6e21... responsive with block buttons
-=======
-
->>>>>>> parent of dfd6e21... responsive with block buttons
 #imagepreview{
 	margin: auto;
 	display: block;
+}
+.row-person{
+	margin-bottom: 2em;
+}
+ul{
+	margin-left: 0;
+	padding-left: 0;
+}
+.ul-person{
+	margin-right: 1.5em;
+	margin-left: 2em;
 }
 .smallimage{
 	max-width: 100px;
@@ -67,20 +70,6 @@ div.list-group-item-text.row{
 }
 li{
 	list-style-type: none;
-}
-<<<<<<< HEAD
-ul{
-	margin-left: -2em;
-}
-
-.ul-person{
-	margin-left: 2em;
-}
-.modal-content{
-	background: #d7ffbf;
-=======
-.ul-person{
-	margin-left: 3em;
 }
 .modal-content{
 	background: #d7ffbf;
@@ -98,5 +87,8 @@ ul{
 }
 p{
 	margin-bottom: 0.15em;
->>>>>>> 02a971a942a22eaf4195385a2041e17856a37941
+
+}
+.form-delete{
+	display: inline !important;
 }

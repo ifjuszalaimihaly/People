@@ -18,3 +18,7 @@ use Illuminate\Http\Request;
 Route::get('/', 'PersonController@create');
 
 Route::resource('person', 'PersonController', ['except' => ['show']]);
+
+Route::resource('image', 'ImageController', ['only' => ['destroy']]);
+
+?>

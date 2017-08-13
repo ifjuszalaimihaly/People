@@ -3,11 +3,15 @@
 Személyek listázása
 @endsection
 @section('content')
-<div class="container" style="margin-top: 5em;">
+<div class="container">
 	<div class="row">
 		<div class="col-xs-12">        
             <ul>
-                  @include('recursive', $person)                
+            @if($person != null)
+                  @include('recursive', $person)
+            @else
+            <h1>A listázáshoz vegyen fel személyeket!</h1>
+            @endif                      
             </ul>           
 		</div>
 

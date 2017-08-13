@@ -43,6 +43,9 @@ div.alert.alert-danger, div.alert.alert-success{
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(68, 157, 68, .6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(68, 157, 68, .6);
 }
+.btn-person{
+	margin-bottom: 0.2em;
+}
 .btn.btn-default, .form-control{
 	background: #ebffe0;
 }
@@ -61,7 +64,7 @@ ul{
 	padding-left: 0;
 }
 .ul-person{
-	margin-right: 1.5em;
+	padding-right: 1.5em;
 	margin-left: 2em;
 }
 .smallimage{

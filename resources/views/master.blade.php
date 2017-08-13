@@ -75,7 +75,22 @@
           })
           .done(function() {
             $("#li-" + personId).fadeOut();
-            $("#del-"+bossId).show();
+            $.ajax({
+              url: 'person/'+bossId+'/countsublatern',
+              type: 'get'
+            })
+            .done(function(countsublatern) {
+              if(countsublatern == 0){
+                $("#del-"+bossId).show();
+              }
+            })
+            .fail(function() {
+              console.log("error");
+            })
+            .always(function() {
+              console.log("complete");
+            });
+            
             //console.log("success");
           })
           .fail(function(result) {

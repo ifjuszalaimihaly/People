@@ -95,7 +95,6 @@ class PersonController extends Controller
     }
 
     private function storePerson(Request $request, $id){
-        Log::error("---------------------------");
         $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',

@@ -18,3 +18,6 @@ Személyek listázása
 </div>
 </div>
 @endsection
+@section("scripts")
+<script type="text/javascript" src="{{ asset('/js/list.js') }}"></script>
+@endsection

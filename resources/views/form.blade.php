@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-Személy felvétele módosítása
+Személy felvétele, módosítása
 @endsection
 @section('content')
 <div class="container">
@@ -10,14 +10,14 @@ Személy felvétele módosítása
 			method="post"
 			enctype="multipart/form-data"
 			@if(isset($updatedperson))
-				action="{{ route('person.update', $updatedperson->id) }}" 			  
+				action="{{ route('person.update', $updatedperson->id) }}" 		  
 			@else
-				action="{{ route('person.store') }}" 			
+				action="{{ route('person.store') }}" 	
 			@endif
-		 	>
-		 	@isset($updatedperson)
+			>
+		 	@if(isset($updatedperson))
 		 	{{ method_field("PUT") }} 
-		 	@endisset
+		 	@else
 				{{ csrf_field() }}
 				<div class="form-group">
 					<label>Felettes</label>
@@ -66,7 +66,7 @@ Személy felvétele módosítása
 				</div>
 				<div class="form-group">
 					<label>Email</label>
-					<input name="email" type="email" class="form-control"
+					<input name="email" type="email" class="form-control" id="email"
 					@if (isset($updatedperson))
 						value="{{$updatedperson->email}}"
 					@endif
@@ -124,4 +124,7 @@ Személy felvétele módosítása
 		</div>
 	</div>
 </div>
+@endsection
+@section("scripts")
+<script type="text/javascript" src="{{ asset('/js/form.js') }}"></script>
 @endsection

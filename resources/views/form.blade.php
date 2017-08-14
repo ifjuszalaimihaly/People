@@ -3,9 +3,7 @@
 Személy felvétele, módosítása
 @endsection
 @section('content')
-<div class="container">
-	<div class="row">
-		<div class="col-md-6 col-sm-8 col-xs-12">
+	<div class="col-md-6 col-sm-8 col-xs-12">
 			<form 
 			method="post"
 			enctype="multipart/form-data"
@@ -35,9 +33,10 @@ Személy felvétele, módosítása
 								@endif
 
 							@else
+								<option value="0"></option>
 								@if (count($people) > 0)
 								@foreach($people as $person)
-									<option value="{{$person->id}}">{{$person->first_name}} {{ $person->last_name}}</option>
+									<option value="{{$person->id}}">{{$person->last_name}} {{$person->first_name}}</option>
 								@endforeach
 								@endif
 							@endif
@@ -46,24 +45,24 @@ Személy felvétele, módosítása
 				</div>
 				<div class="form-group">
 					<label>Vezetéknév</label>
-					<input name="first_name" type="text" class="form-control"  
-					@if (isset($updatedperson))
-						value="{{$updatedperson->first_name}}"
-					@endif
-					@if (old('first_name',null)!=null)
-						value="{{old('first_name')}}"
-					@endif
-					required="required" 
-					>
-				</div>
-				<div class="form-group">
-					<label>Keresztnév</label>
 					<input name="last_name" type="text" class="form-control"  
 					@if (isset($updatedperson))
 						value="{{$updatedperson->last_name}}"
 					@endif
 					@if (old('last_name',null)!=null)
 						value="{{old('last_name')}}"
+					@endif
+					required="required" 
+					>
+				</div>
+				<div class="form-group">
+					<label>Keresztnév</label>
+					<input name="first_name" type="text" class="form-control"  
+					@if (isset($updatedperson))
+						value="{{$updatedperson->first_name}}"
+					@endif
+					@if (old('first_name',null)!=null)
+						value="{{old('first_name')}}"
 					@endif
 					required="required" >
 				</div>
@@ -124,7 +123,5 @@ Személy felvétele, módosítása
 			        {{ session()->get('message') }}
 			    </div>
 			@endif
-		</div>
 	</div>
-</div>
 @endsection

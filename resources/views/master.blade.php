@@ -14,8 +14,11 @@
   </head>
   <body>
 @include('nav')
-  
-@yield('content')
+<div class="container">
+  <div class="row">  
+    @yield('content')
+  </div>
+</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"

@@ -24,8 +24,8 @@ class PersonController extends Controller
 
     public function index()
     {
-        $person = Person::where('boss_id',0)->first();
-        return view('list')->withPerson($person);
+        $people = Person::where('boss_id',0)->orderBy('last_name','asc')->get();
+        return view('list')->withPeople($people);
         
     }
 
@@ -36,7 +36,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        $people = Person::orderBy('first_name', 'asc')->get();
+        $people = Person::orderBy('last_name', 'asc')->get();
         return view('form')->withPeople($people);
 
 
@@ -95,14 +95,15 @@ class PersonController extends Controller
     }
 
     private function storePerson(Request $request, $id){
-        $this->validate($request, [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|max:12',
-            'image' => 'image'
-        ]);
         if($id == null){
+            $this->validate($request, [
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'email' => 'required|email|unique:people',
+                'website' => 'unique:people|nullable',
+                'phone' => 'required|max:12|unique:people',
+                'image' => 'image'
+            ]);
             $person = new Person;
             if($request->boss_id != null){
                 $person->boss_id = $request->boss_id; 
@@ -111,6 +112,21 @@ class PersonController extends Controller
             }            
         } else {
             $person = Person::find($id);
+            $validate_array = array(
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'image' => 'image');
+
+            if($person->email != $request->email){
+                $validate_array['email'] = 'required|email|unique:people';
+            }
+            if($person->website != $request->website){
+                $validate_array['website'] = 'unique:people|nullable';
+            }
+            if($person->phone != $request->phone){
+               $validate_array['phone'] = 'required|max:12|unique:people';
+            }
+             $this->validate($request, $validate_array);
         }
         $person->last_name = $request->last_name;
         $person->first_name = $request->first_name;

@@ -7,7 +7,7 @@
 
 @endif
 <div class="col-sm-10 col-xs-12"> 
-<h4 class="list-group-item-heading">{{ $person->first_name }} {{ $person->last_name }}</h4>
+<h4 class="list-group-item-heading">{{ $person->last_name }} {{ $person->first_name }}</h4>
   <div class="list-group-item-text"> 
     
     <p><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span> 
@@ -29,14 +29,14 @@
             @if(!$person->subalterns->count())   
      
             <button class="btn btn-danger btn-person" role="button" data-toggle="modal" data-target="#confirmDelete"
-            data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}" 
+            data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->last_name }} {{ $person->first_name }}" 
             data-pesron_boss_id="{{ $person->boss_id }}"
             >Töröl</button>
            
 
             @else
                 <button class="btn btn-danger btn-person" id="del-{{ $person->id }}" role="button" data-toggle="modal" data-target="#confirmDelete"
-            data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->first_name }} {{ $person->last_name }}"
+            data-pesron_id="{{ $person->id }}" data-person_name="{{ $person->last_name }} {{ $person->first_name }}"
             data-pesron_boss_id="{{ $person->boss_id }}" style="display: none;" 
             >Töröl</button>
             @endif

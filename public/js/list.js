@@ -5,10 +5,7 @@ $(document).ready(function() {
       personId = $(e.relatedTarget).data('pesron_id');
       var personName = $(e.relatedTarget).data('person_name');
       bossId = $(e.relatedTarget).data('pesron_boss_id');
-      //alert(bossId);
       $("#confirmDelete #pName").text(personName);
-      /*console.log(personId);
-      console.log(personName);*/
   });
   $("#delete").click(function(event) {
     var token = $('input[name=_token]').val();

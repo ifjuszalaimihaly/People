@@ -21,6 +21,5 @@ Route::resource('person', 'PersonController', ['except' => ['show']]);
 
 Route::resource('image', 'ImageController', ['only' => ['destroy']]);
 
-Route::get('person/{id}/countsublatern', 'PersonController@countsublatern')
-
+Route::get('person/{id}/countsublatern', 'PersonController@countsublatern');
 ?>

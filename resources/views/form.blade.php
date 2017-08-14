@@ -17,7 +17,10 @@ Személy felvétele, módosítása
 			>
 		 	@if(isset($updatedperson))
 		 	{{ method_field("PUT") }} 
+		 	<input type="hidden" name="personid" value="{{$updatedperson->id}}">
 		 	@else
+			<input type="hidden" name="personid" value="0">
+			@endif		 	
 				{{ csrf_field() }}
 				<div class="form-group">
 					<label>Felettes</label>
@@ -66,7 +69,7 @@ Személy felvétele, módosítása
 				</div>
 				<div class="form-group">
 					<label>Email</label>
-					<input name="email" type="email" class="form-control" id="email"
+					<input name="email" type="email" class="form-control"
 					@if (isset($updatedperson))
 						value="{{$updatedperson->email}}"
 					@endif
@@ -124,7 +127,4 @@ Személy felvétele, módosítása
 		</div>
 	</div>
 </div>
-@endsection
-@section("scripts")
-<script type="text/javascript" src="{{ asset('/js/form.js') }}"></script>
 @endsection

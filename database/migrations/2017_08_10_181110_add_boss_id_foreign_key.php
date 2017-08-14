@@ -25,6 +25,9 @@ class AddBossIdForeignKey extends Migration
      */
     public function down()
     {
-        $table->dropForeign(['boss_id']);
+        Schema::table('people', function (Blueprint $table) {
+            $table->dropForeign(['boss_id']);
+        });
+        
     }
 }

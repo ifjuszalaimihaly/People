@@ -27,8 +27,8 @@ class AddPhotosToPeople extends Migration
     public function down()
     {
         Schema::table('people', function (Blueprint $table) {
-            $table->dropColumn('smallimage');
-            $table->dropColumn('bigimage');
+            $table->dropColumn('small_image');
+            $table->dropColumn('big_image');
         });
     }
 }

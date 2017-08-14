@@ -125,7 +125,6 @@ class PersonController extends Controller
             $image_name = $request->file('image')->getClientOriginalName();
             list($width, $height) = getimagesize($image);
             $image_big = Image::make($image);
-            $number = $image_big->exif('Orientation');
             $image_big->orientate();
             if($width > 800 || $height>600){
                 $image_big->resize(800, 600, function ($constraint) {
